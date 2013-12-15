@@ -1,0 +1,41 @@
+$def with (users,form)
+<div class="container">
+<h1>Create/Edit user</h1>
+<h5>Welcome $context.user</h5>
+
+<div class="row">
+	<div class="col-md-4 text-center">
+ 		<pre><h5>User</h5></pre>
+	</div>
+	<div class="col-md-4 text-center">
+ 		<pre><h5>Enabled/Disable</h5></pre>
+	</div>
+	<div class="col-md-4 text-center">
+ 		<pre><h5>Delete</h5></pre>
+	</div>
+</div>
+
+$for user in users:
+	<div class="row">
+	<div class="col-md-4 text-center">
+ 		<label>$user['name'].capitalize()</label>
+	</div>
+	<div class="col-md-4 text-center">
+	$if user['enabled'] == 1:
+		<button class="btn btn-xs btn-success" type="button" onClick="location.href='/enable/$user['id']'">Disable</button>
+	$else:
+ 		<button class="btn btn-xs btn-warning" type="button" onClick="location.href='/enable/$user['id']'">Enable</button>
+	</div>
+	<div class="col-md-4 text-center">
+	 	<button class="btn btn-xs btn-danger" type="button" onClick="location.href='/delete/$user['id']'">Delete</button>
+	</div>
+	</div>
+</br>
+<div class="well">
+<form action="" method="post">
+  <h4>Add New User</h4>
+$:form.render()
+</form>
+</div>
+
+</div>
