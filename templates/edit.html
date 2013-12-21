@@ -3,33 +3,27 @@ $def with (users,form)
 <h1>Create/Edit user</h1>
 <h5>Welcome $context.user</h5>
 
-<div class="row">
-	<div class="col-md-4 text-center">
- 		<pre><h5>User</h5></pre>
-	</div>
-	<div class="col-md-4 text-center">
- 		<pre><h5>Enabled/Disable</h5></pre>
-	</div>
-	<div class="col-md-4 text-center">
- 		<pre><h5>Delete</h5></pre>
-	</div>
-</div>
+
+<table class="table table-striped">
+<tr>
+<th>User</th>
+<th>Status</th>
+<th>Delete</th>
+</tr>
 
 $for user in users:
-	<div class="row">
-	<div class="col-md-4 text-center">
- 		<label>$user['name'].capitalize()</label>
-	</div>
-	<div class="col-md-4 text-center">
+	<tr>
+	<td>$user['name'].capitalize()</td>
+	<td>
 	$if user['enabled'] == 1:
 		<button class="btn btn-xs btn-success" type="button" onClick="location.href='/enable/$user['id']'">Disable</button>
 	$else:
  		<button class="btn btn-xs btn-warning" type="button" onClick="location.href='/enable/$user['id']'">Enable</button>
-	</div>
-	<div class="col-md-4 text-center">
+	</td>
+	<td>
 	 	<button class="btn btn-xs btn-danger" type="button" onClick="location.href='/delete/$user['id']'">Delete</button>
-	</div>
-	</div>
+	</td>
+</table>
 </br>
 <div class="well">
 <form action="" method="post">
